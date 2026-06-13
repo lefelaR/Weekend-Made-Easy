@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>WEEKEND MADE EASY • Cocktail Recipes & Vibes</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a1628; /* deep navy base */
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      color: #e9edf2;
+      scroll-behavior: smooth;
+    }
+
+    /* STICKY HEADER - Navy & gold elegance */
+    .brand-bar {
+      background: #0b1426;
+      color: #e9e2c7;
+      padding: 0.9rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      border-bottom: 3px solid #c9a03d;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      letter-spacing: -0.2px;
+      font-weight: 600;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: #f2e8cf;
+    }
+    .logo span {
+      font-size: 0.75rem;
+      font-weight: 300;
+      margin-left: 8px;
+      color: #c9a03d;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a {
+      color: #f2e8cf;
+      text-decoration: none;
+      margin-left: 1.8rem;
+      font-weight: 600;
+      transition: 0.2s;
+      font-size: 0.95rem;
+      border-bottom: 1px solid transparent;
+      letter-spacing: 0.3px;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #c9a03d;
+      color: #ffefb9;
+    }
+
+    /* hero section - navy glow */
+    .hero-image {
+      background: #07112b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+      border-bottom: 1px solid #1e2a44;
+    }
+    .hero-card {
+      max-width: 750px;
+      width: 100%;
+      background: #101c34;
+      border-radius: 32px;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s ease;
+      border: 1px solid #2a3a5a;
+    }
+    .hero-card:hover {
+      transform: scale(1.01);
+    }
+    .hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 380px;
+    }
+    .hero-caption {
+      padding: 1rem 1rem 1.3rem;
+      background: #0f1a30e6;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      color: #e9dfc7;
+      border-top: 1px solid #2c3f60;
+    }
+    .hero-caption p {
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #b9aa7a;
+    }
+
+    /* recipes section */
+    .recipes-container {
+      max-width: 1400px;
+      margin: 2.8rem auto;
+      padding: 0 1.8rem;
+    }
+
+    .brand-section {
+      margin-bottom: 3.5rem;
+      background: #0e1a30cc;
+      border-radius: 48px;
+      padding: 1.8rem 1.5rem 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(4px);
+      border: 1px solid #253551;
+    }
+
+    .brand-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      border-bottom: 2px solid #2f4060;
+      padding-bottom: 0.75rem;
+    }
+    .brand-title {
+      font-size: 2rem;
+      font-weight: 600;
+      border-left: 7px solid;
+      padding-left: 1.2rem;
+      font-family: 'Times New Roman', serif;
+      flex: 1;
+    }
+    .brand-gin { border-left-color: #7ab87e; color: #d9f0dd; }
+    .brand-cognac { border-left-color: #e2b87a; color: #fae3bf; }
+    .brand-whisky { border-left-color: #daa06a; color: #ffe1bd; }
+    .brand-icon-placeholder {
+      background: #1e2a46;
+      border-radius: 60px;
+      padding: 6px 18px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #e2cf9e;
+      border: 1px solid #3f5182;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .recipe-card {
+      background: #0f1a2e;
+      border-radius: 28px;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.3);
+      transition: all 0.25s;
+      overflow: hidden;
+      border: 1px solid #2e4270;
+      display: flex;
+      flex-direction: column;
+    }
+    .recipe-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 28px -10px rgba(0,0,0,0.4);
+      border-color: #c9a03d;
+      background: #12213b;
+    }
+
+    /* image styling inside cards - beverage focus */
+    .card-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 2px solid #2a3f60;
+    }
+    .img-label-small {
+      background: rgba(0,0,0,0.75);
+      color: #f2e2bc;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      backdrop-filter: blur(4px);
+      font-weight: 600;
+      z-index: 2;
+    }
+    .card-img-container {
+      position: relative;
+    }
+
+    .recipe-header {
+      background: #121f38;
+      padding: 1rem 1.3rem 0.7rem;
+      border-bottom: 1px dashed #2f4568;
+    }
+    .recipe-header h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: #ede5ce;
+    }
+    .recipe-meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 8px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #b8aa7c;
+    }
+
+    .recipe-body {
+      padding: 1.2rem 1.3rem;
+      flex: 1;
+    }
+    .glass-garnish {
+      background: #1e2d48;
+      padding: 0.5rem 0.8rem;
+      border-radius: 48px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #e9debd;
+      border: 1px solid #3f5580;
+    }
+    .ingredients {
+      margin: 0.9rem 0 1rem;
+    }
+    .ingredients li {
+      list-style: none;
+      margin-left: 0;
+      padding: 4px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px dotted #2c4162;
+      display: flex;
+      gap: 6px;
+      color: #dce3ef;
+    }
+    .ingredients li strong {
+      min-width: 75px;
+      font-weight: 600;
+      color: #e5cf9e;
+    }
+    .steps {
+      margin: 1rem 0 0.8rem;
+      border-top: 1px solid #263f62;
+      padding-top: 0.8rem;
+    }
+    .steps p {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: #e1e7f0;
+      margin-bottom: 6px;
+    }
+    .pairing {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      background: #1f2e48;
+      padding: 6px 10px;
+      border-radius: 24px;
+      display: inline-block;
+      color: #dbcfaa;
+      border: 1px solid #3c5380;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #071020;
+      color: #bbaa7c;
+      font-size: 0.8rem;
+      margin-top: 2rem;
+      border-top: 1px solid #293a58;
+    }
+
+    html {
+      scroll-padding-top: 85px;
+      scroll-behavior: smooth;
+    }
+
+    @media (max-width: 700px) {
+      .brand-bar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0.8rem 1rem;
+      }
+      .nav-links a {
+        margin: 0 1rem;
+      }
+      .recipe-grid {
+        grid-template-columns: 1fr;
+      }
+      html {
+        scroll-padding-top: 130px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <div class="logo">
+    <h1>WEEKEND MADE EASY <span>✧ unwind & sip</span></h1>
+  </div>
+  <div class="nav-links">
+    <a href="#gin-recipes">GRAB.</a>
+    <a href="#cognac-recipes">CHILL.</a>
+    <a href="#whisky-recipes">ENJOY.</a>
+  </div>
+</div>
+
+<!-- HERO: main beverage picture -->
+<div class="hero-image" id="home">
+  <div class="hero-card">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1000&auto=format" alt="Cocktail collection hero">
+    <div class="hero-caption">
+      <p>✦ GRAB. CHILL. ENJOY. — YOUR WEEKEND STARTS HERE ✦</p>
+      <p style="font-size:0.75rem;">PREMIUM COCKTAIL RECIPES • BEAUTIFUL BEVERAGES</p>
+    </div>
+  </div>
+</div>
+
+<!-- RECIPES SECTION -->
+<div class="recipes-container">
+  
+  <!-- ================= GRAB. (Gin Section) ================= -->
+  <div class="brand-section" id="gin-recipes">
+    <div class="brand-header">
+      <div class="brand-title brand-gin">🍸 GRAB. & SHAKE</div>
+      <div class="brand-icon-placeholder">🍹 REFRESHING BEVERAGES</div>
+    </div>
+    <div class="recipe-grid">
+      
+      <!-- 1. English Garden - crisp beverage image -->
+      <div class="recipe-card">
+        <div class="card-img-container">
+          <img class="card-img" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&auto=format" alt="English Garden cocktail - fresh cucumber beverage">
+          <div class="img-label-small">🍹 English Garden</div>
+        </div>
+        <div class="recipe-header"><h3>English Garden</h3><div class="recipe-meta"><span>EASY</span><span>3 MIN</span></div></div>
+        <div class="recipe-body"><div class="glass-garnish">🥃 HIGH BALL | CUCUMBER + MINT</div><ul class="ingredients"><li><strong>50 ml</strong> London Dry Gin</li><li><strong>20 ml</strong> lime juice</li><li><strong>15 ml</strong> elderflower cordial</li><li><strong>3 slices</strong> cucumber</li><li>Top soda water</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Muddle cucumber in shaker. Add gin, lime, elderflower & ice. Shake 12 sec. Double strain into highball with ice. Top soda. Garnish with cucumber ribbon & mint.</p></div><div class="pairing">🍽️ PAIRING: Goat cheese tart · smoked salmon</div></div>
+      </div>
+      
+      <!-- 2. Blackberry & Thyme Smash - berry beverage -->
+      <div class="recipe-card">
+        <div class="card-img-container">
+          <img class="card-img" src="https://images.unsplash.com/photo-1602413584950-cccdcbe6fa73?w=800&auto=format" alt="Blackberry and thyme smash beverage">
+          <div class="img-label-small">🍇 Blackberry & Thyme Smash</div>
+        </div>
+        <div class="recipe-header"><h3>Blackberry & Thyme Smash</h3><div class="recipe-meta"><span>EASY</span><span>4 MIN</span></div></div>
+        <div class="recipe-body"><div class="glass-garnish">🥃 ROCKS | THYME + BLACKBERRIES</div><ul class="ingredients"><li><strong>50 ml</strong> Gin</li><li><strong>25 ml</strong> lemon juice</li><li><strong>20 ml</strong> honey syrup</li><li><strong>5</strong> blackberries</li><li><strong>3 sprigs</strong> thyme</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Muddle blackberries & thyme. Add gin, lemon, honey syrup & ice. Shake hard. Double strain into rocks glass over large cube. Garnish with thyme & berries.</p></div><div class="pairing">🍽️ PAIRING: Brie cheese · dark chocolate truffles</div></div>
+      </div>
+      
+      <!-- 3. Pear & Rosemary Fizz - elegant fizz beverage -->
+      <div class="recipe-card">
+        <div class="card-img-container">
+          <img class="card-img" src="https://images.unsplash.com/photo-1604152135912-de69fcdd3f02?w=800&auto=format" alt="Pear and rosemary fizz beverage">
+          <div class="img-label-small">🍐 Pear & Rosemary Fizz</div>
+        </div>
+        <div class="recipe-header"><h3>Pear & Rosemary Fizz</h3><div class="recipe-meta"><span>MEDIUM</span><span>5 MIN</span></div></div>
+        <div class="recipe-body"><div class="glass-garnish">🥂 FLUTE | PEAR SLICE + ROSEMARY</div><ul class="ingredients"><li><strong>50 ml</strong> Gin</li><li><strong>30 ml</strong> pear juice</li><li><strong>20 ml</strong> rosemary syrup</li><li>Top prosecco</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Shake gin, pear juice, rosemary syrup with ice. Strain into flute, top prosecco. Garnish with pear slice & rosemary sprig.</p></div><div class="pairing">🍽️ PAIRING: Blue cheese · prosciutto melon</div></div>
+      </div>
+      
+      <!-- 4. Grapefruit G&T - vibrant citrus beverage -->
+      <div class="recipe-card">
+        <div class="card-img-container">
+          <img class="card-img" src="https://images.unsplash.com/photo-1560512823-829485b8bf24?w=800&auto=format" alt="Grapefruit G and T beverage">
+          <div class="img-label-small">🍊 Grapefruit G&T</div>
+        </div>
+        <div class="recipe-header"><h3>Grapefruit G&T</h3><div class="recipe-meta"><span>EASY</span><span>3 MIN</span></div></div>
+        <div class="recipe-body"><div class="glass-garnish">🍸 COPA | GRAPEFRUIT + ROSEMARY</div><ul class="ingredients"><li><strong>50 ml</strong> Gin</li><li><strong>30 ml</strong> pink grapefruit juice</li><li><strong>10 ml</strong> simple syrup</li><li>Premium tonic</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Build over large ice: gin, juice, syrup. Top tonic slowly, stir once. Garnish with grapefruit wheel & rosemary.</p></div><div class="pairing">🍽️ PAIRING: Spicy Thai salad · oysters</div></div>
+      </div>
+      
+      <!-- 5. Lavender Collins - floral beverage -->
+      <div class="recipe-card">
+        <div class="card-img-container">
+          <img class="card-img" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&auto=format" alt="Lavender Collins floral cocktail">
+          <div class="img-label-small">🌸 Lavender Collins</div>
+        </div>
+        <div class="recipe-header"><h3>Lavender Collins</h3><div class="recipe-meta"><span>EASY</span><span>4 MIN</span></div></div>
+        <div class="recipe-body"><div class="glass-garnish">🥤 COLLINS | LAVENDER + LEMON</div><ul class="ingredients"><li><strong>50 ml</strong> Gin</li><li><strong>30 ml</strong> lemon juice</li><li><strong>20 ml</strong> lavender syrup</li><li>Top soda water</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Shake gin, lemon, lavender syrup with ice. Strain into Collins glass with fresh ice. Top soda. Garnish with lemon wheel & lavender buds.</p></div><div class="pairing">🍽️ PAIRING: Shortbread · honey-glazed chicken</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHILL. (Cognac Section) ================= -->
+  <div class="brand-section" id="cognac-recipes">
+    <div class="brand-header">
+      <div class="brand-title brand-cognac">❄️ CHILL. & INDULGE</div>
+      <div class="brand-icon-placeholder">🥃 SMOOTH SPIRITS</div>
+    </div>
+    <div class="recipe-grid">
+      <!-- Sidecar - classic coupe beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&auto=format" alt="Sidecar cocktail beverage"><div class="img-label-small">🍊 Classic Sidecar</div></div><div class="recipe-header"><h3>Classic Sidecar</h3><div class="recipe-meta"><span>MEDIUM</span><span>4 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🍸 COUPE | LEMON TWIST</div><ul class="ingredients"><li><strong>50 ml</strong> Cognac</li><li><strong>25 ml</strong> Cointreau</li><li><strong>25 ml</strong> lemon juice</li><li>10 ml simple syrup (opt)</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Shake all with ice 12 sec. Strain into sugar-rimmed coupe. Express lemon peel.</p></div><div class="pairing">🍽️ PAIRING: Crème brûlée · duck breast</div></div></div>
+      <!-- French Connection - rich amber beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1608033249942-aa1b6c0ace31?w=800&auto=format" alt="French Connection cognac beverage"><div class="img-label-small">🌰 French Connection</div></div><div class="recipe-header"><h3>French Connection</h3><div class="recipe-meta"><span>VERY EASY</span><span>2 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥃 ROCKS | ORANGE TWIST</div><ul class="ingredients"><li><strong>50 ml</strong> Cognac</li><li><strong>50 ml</strong> Amaretto</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Pour over large ice cube in rocks glass. Stir 15 sec. Garnish with orange twist.</p></div><div class="pairing">🍽️ PAIRING: Almond biscotti · aged Gouda</div></div></div>
+      <!-- Old Fashioned - timeless rocks beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&auto=format" alt="Cognac Old Fashioned beverage"><div class="img-label-small">🍊 Old Fashioned</div></div><div class="recipe-header"><h3>Cognac Old Fashioned</h3><div class="recipe-meta"><span>MEDIUM</span><span>4 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥃 OLD FASHIONED | ORANGE + CHERRY</div><ul class="ingredients"><li><strong>60 ml</strong> Cognac</li><li>1 sugar cube</li><li>2 dashes Angostura bitters</li><li>1 dash orange bitters</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Muddle sugar/bitters, add cognac + large ice. Stir 30 sec. Express orange peel. Garnish with cherry.</p></div><div class="pairing">🍽️ PAIRING: Pecan pie · smoked brisket</div></div></div>
+      <!-- Cranberry Chai - spiced beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1544145945-f904253d2ecc?w=800&auto=format" alt="Cranberry Chai spiced cocktail"><div class="img-label-small">☕ Cranberry Chai</div></div><div class="recipe-header"><h3>Cranberry Chai Spice</h3><div class="recipe-meta"><span>MEDIUM</span><span>6 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥃 ROCKS | CINNAMON + STAR ANISE</div><ul class="ingredients"><li><strong>50 ml</strong> Cognac</li><li><strong>30 ml</strong> cranberry juice</li><li><strong>20 ml</strong> chai syrup</li><li><strong>15 ml</strong> lemon juice</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Shake all ingredients with ice. Strain into rocks glass over fresh ice. Garnish cinnamon stick & star anise.</p></div><div class="pairing">🍽️ PAIRING: Roast turkey · pumpkin pie</div></div></div>
+      <!-- Cognac Sour - silky sour beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&auto=format" alt="Cognac Sour beverage with foam"><div class="img-label-small">🍋 Cognac Sour</div></div><div class="recipe-header"><h3>Cognac Sour</h3><div class="recipe-meta"><span>MEDIUM</span><span>5 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🍸 COUPE | BITTERS DOT + LEMON</div><ul class="ingredients"><li><strong>60 ml</strong> Cognac</li><li><strong>30 ml</strong> lemon juice</li><li><strong>20 ml</strong> simple syrup</li><li>1 egg white (or aquafaba)</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Dry shake all (no ice) 15 sec. Add ice, shake again. Double strain into coupe. Dot bitters & swirl.</p></div><div class="pairing">🍽️ PAIRING: Roasted chicken · lemon tart</div></div></div>
+    </div>
+  </div>
+
+  <!-- ================= ENJOY. (Whisky Section) ================= -->
+  <div class="brand-section" id="whisky-recipes">
+    <div class="brand-header">
+      <div class="brand-title brand-whisky">✨ ENJOY. & SAVOR</div>
+      <div class="brand-icon-placeholder">🥃 DEEP & WARM</div>
+    </div>
+    <div class="recipe-grid">
+      <!-- Maple Old Fashioned - cozy beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1604362925797-6f2e3d89aef6?w=800&auto=format" alt="Maple Old Fashioned whisky beverage"><div class="img-label-small">🍁 Maple Old Fashioned</div></div><div class="recipe-header"><h3>Maple Old Fashioned</h3><div class="recipe-meta"><span>EASY</span><span>4 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥃 ROCKS | ORANGE + CHERRY</div><ul class="ingredients"><li><strong>60 ml</strong> Bourbon or Rye</li><li><strong>10 ml</strong> maple syrup</li><li>2 dashes Angostura bitters</li><li>1 dash black walnut bitters</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Combine whisky, maple syrup, bitters in glass with large ice. Stir 30 sec. Garnish orange peel & cherry.</p></div><div class="pairing">🍽️ PAIRING: Pancakes with bacon · pecan pie</div></div></div>
+      <!-- Gold Rush - honey amber beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1600272768193-81c3e8a610bd?w=800&auto=format" alt="Gold Rush whisky sour beverage"><div class="img-label-small">🍯 Gold Rush</div></div><div class="recipe-header"><h3>Gold Rush</h3><div class="recipe-meta"><span>EASY</span><span>3 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥃 ROCKS | LEMON TWIST</div><ul class="ingredients"><li><strong>60 ml</strong> Whisky</li><li><strong>30 ml</strong> lemon juice</li><li><strong>25 ml</strong> honey syrup</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Shake all with ice vigorously. Strain over fresh ice in rocks glass. Express lemon oil.</p></div><div class="pairing">🍽️ PAIRING: Fried chicken · honey cornbread</div></div></div>
+      <!-- Apple Cider Smash - fall beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&auto=format" alt="Apple Cider Smash beverage"><div class="img-label-small">🍎 Apple Cider Smash</div></div><div class="recipe-header"><h3>Apple Cider Smash</h3><div class="recipe-meta"><span>MEDIUM</span><span>5 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥃 ROCKS | CINNAMON + APPLE FAN</div><ul class="ingredients"><li><strong>50 ml</strong> Whisky</li><li><strong>40 ml</strong> fresh apple cider</li><li><strong>20 ml</strong> lemon juice</li><li><strong>15 ml</strong> cinnamon syrup</li><li>3 apple slices</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Muddle apple slices. Add remaining, shake with ice. Double strain into rocks glass. Garnish cinnamon stick & apple fan.</p></div><div class="pairing">🍽️ PAIRING: Roast pork · sharp cheddar</div></div></div>
+      <!-- Coffee Highball - bold cold brew beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&auto=format" alt="Coffee Highball whisky beverage"><div class="img-label-small">☕ Coffee Highball</div></div><div class="recipe-header"><h3>Coffee Highball</h3><div class="recipe-meta"><span>EASY</span><span>4 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥤 HIGHBALL | ORANGE + COFFEE BEANS</div><ul class="ingredients"><li><strong>50 ml</strong> Whisky</li><li><strong>80 ml</strong> cold brew coffee</li><li><strong>15 ml</strong> vanilla syrup</li><li>2 dashes chocolate bitters</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Build over ice: whisky, coffee, syrup, bitters. Stir gently. Garnish orange twist & coffee beans.</p></div><div class="pairing">🍽️ PAIRING: Tiramisu · grilled steak</div></div></div>
+      <!-- Ginger Smash - zesty refreshing beverage -->
+      <div class="recipe-card"><div class="card-img-container"><img class="card-img" src="https://images.unsplash.com/photo-1551029504-08014dc3f9f9?w=800&auto=format" alt="Ginger Whisky Smash beverage"><div class="img-label-small">🌿 Ginger Smash</div></div><div class="recipe-header"><h3>Ginger Whisky Smash</h3><div class="recipe-meta"><span>MEDIUM</span><span>5 MIN</span></div></div><div class="recipe-body"><div class="glass-garnish">🥃 ROCKS | MINT + LIME</div><ul class="ingredients"><li><strong>60 ml</strong> Whisky</li><li><strong>30 ml</strong> lime juice</li><li><strong>20 ml</strong> ginger syrup</li><li>5 mint leaves</li><li>Top ginger beer</li></ul><div class="steps"><p><strong>📋 STEPS:</strong> Muddle mint, shake whisky, lime, ginger syrup with ice. Double strain over fresh ice, top ginger beer. Garnish mint & lime.</p></div><div class="pairing">🍽️ PAIRING: Spicy Thai curry · gingerbread</div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>🍸 WEEKEND MADE EASY · GRAB. CHILL. ENJOY. 🥃</p>
+  <p style="margin-top: 6px;">📸 Premium beverage photography — each cocktail is a visual masterpiece. Craft responsibly.</p>
+</footer>
+
+</body>
+</html>
